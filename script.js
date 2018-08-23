@@ -128,7 +128,7 @@ function showStatus() {
 
     let dealerCardString = "";
     for (let i = 0; i < dealerCards.length; i++) {
-        dealerCardString += getCardString(dealerCards[i]) + '\n';
+        dealerCardString += getCardString(dealerCards[i]) + "\n";
     }
 
     let playerCardString = "";
@@ -166,7 +166,7 @@ function getNextCard(){
 }
 
 function getCardString(card) {
-    return card.value + ' of ' + card.suit;
+    return card.value + " of " + card.suit;
 }
 
 function shuffleDeck(deck) {
@@ -216,6 +216,6 @@ hitButton.addEventListener("click", function () {
 stayButton.addEventListener("click", function () {
     gameOver = true;
     checkForEndOfGame();
-    showStatus()
+    showStatus();
 });
 
