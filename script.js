@@ -25,44 +25,6 @@ let gameStarted = false,
     playerScore = 0,
     deck = [];
 
-// Button visibility
-hitButton.style.display = 'none';
-stayButton.style.display = 'none';
-
-// New Game Button Event
-newGameButton.addEventListener("click", function () {
-
-    gameStarted = true;
-    gameOver = false;
-    playerWon = false;
-
-    deck = createDeck();
-    shuffleDeck(deck);
-
-    dealerCards = [getNextCard(), getNextCard()];
-    playerCards = [getNextCard(), getNextCard()];
-
-    newGameButton.style.display = 'none';
-    hitButton.style.display = 'inline';
-    stayButton.style.display = 'inline';
-    showStatus();
-
-});
-
-// Hit Button EventHandler
-hitButton.addEventListener("click", function () {
-    playerCards.push(getNextCard());
-    checkForEndOfGame();
-    showStatus()
-});
-
-// Stay Button EventHandler
-stayButton.addEventListener("click", function () {
-    gameOver = true;
-    checkForEndOfGame();
-    showStatus()
-});
-
 // Functions using SRP
 function checkForEndOfGame() {
 
@@ -218,4 +180,42 @@ function shuffleDeck(deck) {
     }
 
 }
+
+// Button visibility
+hitButton.style.display = "none";
+stayButton.style.display = "none";
+
+// New Game Button Event
+newGameButton.addEventListener("click", function () {
+
+    gameStarted = true;
+    gameOver = false;
+    playerWon = false;
+
+    deck = createDeck();
+    shuffleDeck(deck);
+
+    dealerCards = [getNextCard(), getNextCard()];
+    playerCards = [getNextCard(), getNextCard()];
+
+    newGameButton.style.display = "none";
+    hitButton.style.display = "inline";
+    stayButton.style.display = "inline";
+    showStatus();
+
+});
+
+// Hit Button EventHandler
+hitButton.addEventListener("click", function () {
+    playerCards.push(getNextCard());
+    checkForEndOfGame();
+    showStatus()
+});
+
+// Stay Button EventHandler
+stayButton.addEventListener("click", function () {
+    gameOver = true;
+    checkForEndOfGame();
+    showStatus()
+});
 
