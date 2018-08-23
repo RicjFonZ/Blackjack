@@ -53,12 +53,11 @@ function getNumericalValue(card) {
 
 function getScore(cardArray) {
 
-    let card;
     let score = 0;
     let hasAce = false;
 
     for (let i = 0; i < cardArray.length; i++) {
-        card = cardArray[i];
+        let card = cardArray[i];
         score += getNumericalValue(card);
 
         if (card.value === "Ace") {
