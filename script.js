@@ -28,27 +28,26 @@ let gameStarted = false,
 // Functions using SRP
 
 function getNumericalValue(card) {
-    switch (card.value) {
-        case "Ace":
-            return 1;
-        case "Two":
-            return 2;
-        case "Three":
-            return 3;
-        case "Four":
-            return 4;
-        case "Five":
-            return 5;
-        case "Six":
-            return 6;
-        case "Seven":
-            return 7;
-        case "Eight":
-            return 8;
-        case "Nine":
-            return 9;
-        default:
-            return 10;
+    if (card.value === "Ace") {
+        return 1;
+    } else if (card.value === "Two") {
+        return 2;
+    } else if (card.value === "Three") {
+        return 3;
+    } else if (card.value === "Four") {
+        return 4;
+    } else if (card.value === "Five") {
+        return 5;
+    } else if (card.value === "Six") {
+        return 6;
+    } else if (card.value === "Seven") {
+        return 7;
+    } else if (card.value === "Eight") {
+        return 8;
+    } else if (card.value === "Nine") {
+        return 9;
+    } else {
+        return 10;
     }
 }
 
@@ -75,6 +74,10 @@ function getScore(cardArray) {
 function updateScores() {
     dealerScore = getScore(dealerCards);
     playerScore = getScore(playerCards);
+}
+
+function getNextCard(){
+    return deck.shift();
 }
 
 function checkForEndOfGame() {
@@ -164,10 +167,6 @@ function showStatus() {
         hitButton.style.display = "none";
         stayButton.style.display = "none";
     }
-}
-
-function getNextCard(){
-    return deck.shift();
 }
 
 function shuffleDeck(deck) {
