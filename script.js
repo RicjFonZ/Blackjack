@@ -26,48 +26,6 @@ let gameStarted = false,
     deck = [];
 
 // Functions using SRP
-function checkForEndOfGame() {
-
-    updateScores();
-
-    if (gameOver) {
-        // let dealer take cards
-        while (dealerScore <= playerScore
-        && playerScore <= 21
-        && dealerScore <= 21) {
-            dealerCards.push(getNextCard());
-            updateScores();
-        }
-    }
-
-    if (playerScore > 21) {
-        playerWon = false;
-        gameOver = true;
-    }
-    else if (dealerScore > 21) {
-        playerWon = true;
-        gameOver = true;
-    }
-    else if (gameOver) {
-        playerWon = playerScore > dealerScore;
-    }
-}
-
-function createDeck() {
-
-    let deck = [];
-
-    for (let suitIdx = 0; suitIdx < suits.length; suitIdx++) {
-        for (let valueIdx = 0; valueIdx < values.length; valueIdx++) {
-            let card = {
-                suit: suits[suitIdx],
-                value: values[valueIdx]
-            };
-            deck.push(card);
-        }
-    }
-    return deck;
-}
 
 function getNumericalValue(card) {
     switch (card.value) {
@@ -119,6 +77,53 @@ function updateScores() {
     playerScore = getScore(playerCards);
 }
 
+function checkForEndOfGame() {
+
+    updateScores();
+
+    if (gameOver) {
+        // let dealer take cards
+        while (dealerScore <= playerScore
+        && playerScore <= 21
+        && dealerScore <= 21) {
+            dealerCards.push(getNextCard());
+            updateScores();
+        }
+    }
+
+    if (playerScore > 21) {
+        playerWon = false;
+        gameOver = true;
+    }
+    else if (dealerScore > 21) {
+        playerWon = true;
+        gameOver = true;
+    }
+    else if (gameOver) {
+        playerWon = playerScore > dealerScore;
+    }
+}
+
+function createDeck() {
+
+    let deck = [];
+
+    for (let suitIdx = 0; suitIdx < suits.length; suitIdx++) {
+        for (let valueIdx = 0; valueIdx < values.length; valueIdx++) {
+            let card = {
+                suit: suits[suitIdx],
+                value: values[valueIdx]
+            };
+            deck.push(card);
+        }
+    }
+    return deck;
+}
+
+function getCardString(card) {
+    return card.value + " of " + card.suit;
+}
+
 function showStatus() {
 
     if (!gameStarted) {
@@ -165,10 +170,6 @@ function getNextCard(){
     return deck.shift();
 }
 
-function getCardString(card) {
-    return card.value + " of " + card.suit;
-}
-
 function shuffleDeck(deck) {
 
     for (let i = 0; i < deck.length; i++) {
@@ -209,7 +210,7 @@ newGameButton.addEventListener("click", function () {
 hitButton.addEventListener("click", function () {
     playerCards.push(getNextCard());
     checkForEndOfGame();
-    showStatus()
+    showStatus();
 });
 
 // Stay Button EventHandler
